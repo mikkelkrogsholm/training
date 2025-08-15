@@ -246,8 +246,126 @@ These commands work seamlessly with the specialized agents:
 - Commands include bash execution for real-time status checks
 - All commands respect the modular architecture principles
 
+---
+
+## Git Workflow Commands
+
+### `/phase-branch [phase-number]`
+
+**Purpose:** Create and switch to a phase development branch
+
+**Usage:**
+```bash
+/phase-branch 0   # Create branch for Phase 0
+/phase-branch 7   # Create branch for Phase 7 (Calendar Module)
+```
+
+**What it does:**
+- Checks working directory is clean
+- Creates branch following naming convention: `phase-{number}-{description}`
+- Switches to the new branch
+- Shows phase objectives and first task
+
+**Output:** Branch creation confirmation, phase goals, git workflow reminders
+
+---
+
+### `/phase-commit [type] [scope] [message]`
+
+**Purpose:** Create a properly formatted conventional commit
+
+**Usage:**
+```bash
+/phase-commit feat core "implement module registry"
+/phase-commit fix auth "resolve session timeout"
+/phase-commit test domain "add E1RM tests"
+/phase-commit   # Analyzes changes and suggests commit
+```
+
+**What it does:**
+- Validates commit format (type, scope, message)
+- Runs pre-commit checks (tests, console.logs, secrets)
+- Stages appropriate files
+- Creates conventional commit
+
+**Commit Types:** feat, fix, docs, test, refactor, chore, style, perf
+**Scopes:** core, auth, db, api, ui, module-{name}, domain, config
+
+---
+
+### `/phase-complete [phase-number]`
+
+**Purpose:** Complete a phase by merging to main and tagging
+
+**Usage:**
+```bash
+/phase-complete 0   # Complete Phase 0
+/phase-complete 4   # Complete Phase 4
+```
+
+**What it does:**
+- Verifies all phase tasks completed
+- Runs full test suite
+- Merges to main with `--no-ff`
+- Creates tag: `phase-{number}-complete`
+- Pushes to origin with tags
+- Cleans up feature branch
+
+**Output:** Merge confirmation, tag details, next phase suggestion
+
+---
+
+### `/git-status`
+
+**Purpose:** Comprehensive git repository status overview
+
+**Usage:**
+```bash
+/git-status   # Full repository status check
+```
+
+**What it shows:**
+- Current branch and tracking status
+- Uncommitted changes
+- Unpushed commits
+- Branch overview (merged/unmerged)
+- Commit history and format compliance
+- Phase completion tags
+- Repository health checks
+
+**Output Format:**
+```
+📍 Current Branch: phase-1-auth-system
+📝 Working Directory: clean
+📤 Unpushed Commits: 3
+🏷️ Latest Phase Tag: phase-0-complete
+✅ Conventional Commits: yes
+```
+
+## Complete Workflow Example
+
+```bash
+# Start new phase
+/start-phase 1          # Initialize phase work
+/phase-branch 1         # Create git branch
+
+# During development
+/phase-commit feat auth "implement login endpoint"
+/quick-test unit        # Test changes
+/phase-commit test auth "add login tests"
+
+# Review progress
+/review-phase 1         # Check completion
+/git-status            # Check git state
+
+# Complete phase
+/phase-complete 1       # Merge and tag
+/start-phase 2         # Begin next phase
+```
+
 ## See Also
 
+- [Git Strategy](./GIT-STRATEGY.md) - Complete git workflow documentation
 - [Development Plan](./PLAN.md) - Detailed phase breakdown
 - [Available Agents](./agents.md) - Agent descriptions and usage
 - [Best Practices](./BEST-PRACTICES.md) - Coding standards

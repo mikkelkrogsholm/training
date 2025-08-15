@@ -14,6 +14,25 @@ This is a modular fitness web application ("kernel + modules") designed for priv
 - **Deployment**: Single container via Dokploy
 - **Data Visualization**: Chart.js or ApexCharts (mobile-friendly)
 
+## Git Strategy & Version Control
+
+**IMPORTANT: Follow the Git Strategy documented in docs/GIT-STRATEGY.md**
+
+### Key Git Rules:
+- **IMPORTANT**: Create a feature branch for each phase: `phase-{number}-{description}`
+- **IMPORTANT**: Use Conventional Commits: `feat(scope): message`
+- **IMPORTANT**: Run `/quick-test` before EVERY commit
+- **IMPORTANT**: Tag phase completions: `phase-{number}-complete`
+- **IMPORTANT**: Never commit broken code or secrets
+- **IMPORTANT**: Merge with `--no-ff` to maintain history
+
+### Commit Format:
+```
+<type>(<scope>): <subject>
+Types: feat, fix, docs, test, refactor, chore
+Scopes: core, auth, db, api, ui, module-{name}, domain
+```
+
 ## Critical Best Practices
 
 **IMPORTANT: These practices MUST be followed in all code:**

@@ -2,8 +2,20 @@
 
 This plan breaks down the development into standalone phases. Each phase delivers working functionality that can be deployed and tested independently.
 
+## Git Workflow for Phases
+
+Each phase follows this git workflow:
+
+1. **Start Phase**: Create branch `phase-{number}-{description}`
+2. **During Development**: Commit with conventional format `feat(scope): message`
+3. **Before Commits**: Run `/quick-test` to ensure quality
+4. **Complete Phase**: Merge with `--no-ff` and tag `phase-{number}-complete`
+
+See [GIT-STRATEGY.md](./GIT-STRATEGY.md) for detailed git practices.
+
 ## Phase 0: Project Setup & Foundation
 **Goal:** Initialize project with all necessary tooling and configurations
+**Branch:** `phase-0-project-setup`
 
 ### Tasks:
 - [ ] Initialize SvelteKit project with TypeScript strict mode - **ui-component-agent**
@@ -17,6 +29,7 @@ This plan breaks down the development into standalone phases. Each phase deliver
 
 ## Phase 1: Kernel Core - Database & Auth
 **Goal:** Establish database foundation and authentication system
+**Branch:** `phase-1-auth-system`
 
 ### Tasks:
 - [ ] Create core database schema (users, settings, _migrations) - **db-schema-manager**
@@ -33,6 +46,7 @@ This plan breaks down the development into standalone phases. Each phase deliver
 
 ## Phase 2: Kernel Core - Module System
 **Goal:** Implement the module registry and extension points
+**Branch:** `phase-2-module-system`
 
 ### Tasks:
 - [ ] Create ModuleRegistry class in $lib - **domain-logic-agent**
@@ -48,6 +62,7 @@ This plan breaks down the development into standalone phases. Each phase deliver
 
 ## Phase 3: Movements & Guides Foundation
 **Goal:** Enable movement definitions and guidance content
+**Branch:** `phase-3-movements`
 
 ### Tasks:
 - [ ] Create movements table schema - **db-schema-manager**
@@ -65,6 +80,7 @@ This plan breaks down the development into standalone phases. Each phase deliver
 
 ## Phase 4: Routines & Session Logging
 **Goal:** Core fitness functionality - routines and workout logging
+**Branch:** `phase-4-session-logging`
 
 ### Tasks:
 - [ ] Create routines table schema - **db-schema-manager**
@@ -84,6 +100,7 @@ This plan breaks down the development into standalone phases. Each phase deliver
 
 ## Phase 5: Analytics & Normalization
 **Goal:** Progress tracking with E1RM calculations and charts
+**Branch:** `phase-5-analytics`
 
 ### Tasks:
 - [ ] Implement E1RM calculator (Epley formula) - **domain-logic-agent**
@@ -101,6 +118,7 @@ This plan breaks down the development into standalone phases. Each phase deliver
 
 ## Phase 6: Admin Module
 **Goal:** Administrative controls for users and system
+**Branch:** `module-admin`
 
 ### Tasks:
 - [ ] Scaffold admin module structure - **module-builder**
@@ -117,6 +135,7 @@ This plan breaks down the development into standalone phases. Each phase deliver
 
 ## Phase 7: Calendar Module
 **Goal:** Planning and scheduling workouts
+**Branch:** `module-calendar`
 
 ### Tasks:
 - [ ] Scaffold calendar module - **module-builder**
@@ -133,6 +152,7 @@ This plan breaks down the development into standalone phases. Each phase deliver
 
 ## Phase 8: Media Upload & Management
 **Goal:** Support for images and videos in guides
+**Branch:** `phase-8-media`
 
 ### Tasks:
 - [ ] Create /api/upload endpoint - **api-endpoint-agent**
@@ -147,6 +167,7 @@ This plan breaks down the development into standalone phases. Each phase deliver
 
 ## Phase 9: Friends Module
 **Goal:** Social features with privacy controls
+**Branch:** `module-friends`
 
 ### Tasks:
 - [ ] Scaffold friends module - **module-builder**
@@ -162,6 +183,7 @@ This plan breaks down the development into standalone phases. Each phase deliver
 
 ## Phase 10: Analytics Module (Enhanced)
 **Goal:** Advanced charts and insights
+**Branch:** `module-analytics`
 
 ### Tasks:
 - [ ] Scaffold analytics module - **module-builder**
@@ -177,6 +199,7 @@ This plan breaks down the development into standalone phases. Each phase deliver
 
 ## Phase 11: Production Deployment
 **Goal:** Deploy to Dokploy with proper configuration
+**Branch:** `phase-11-production`
 
 ### Tasks:
 - [ ] Configure health check endpoint - **api-endpoint-agent**
@@ -192,6 +215,7 @@ This plan breaks down the development into standalone phases. Each phase deliver
 
 ## Phase 12: PWA & Offline (Optional)
 **Goal:** Progressive Web App with offline support
+**Branch:** `phase-12-pwa`
 
 ### Tasks:
 - [ ] Create service worker - **ui-component-agent**
@@ -204,6 +228,7 @@ This plan breaks down the development into standalone phases. Each phase deliver
 
 ## Phase 13: AI Trainer Module (Optional)
 **Goal:** AI-powered fitness assistant
+**Branch:** `module-ai-trainer`
 
 ### Tasks:
 - [ ] Scaffold AI trainer module - **module-builder**
@@ -218,6 +243,7 @@ This plan breaks down the development into standalone phases. Each phase deliver
 
 ## Phase 14: AI Routine Editor Module (Optional)
 **Goal:** Generate routines through dialogue
+**Branch:** `module-ai-editor`
 
 ### Tasks:
 - [ ] Scaffold routine editor module - **module-builder**
