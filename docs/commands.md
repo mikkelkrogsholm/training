@@ -2,6 +2,30 @@
 
 This document provides an overview of the custom slash commands available for developing the modular fitness web application. These commands streamline development workflow and ensure consistency with project standards.
 
+## Recommended Command Workflow Order
+
+### Phase Development Workflow (Primary Path)
+1. **`/start-phase [n]`** - Begin working on a phase with todo list
+2. **`/phase-branch [n]`** - Create and switch to feature branch
+3. **`/quick-test`** - Verify baseline before starting work
+4. **Development work** - Implement features
+5. **`/phase-commit`** - Make conventional commits during work
+6. **`/quick-test all`** - Test after each significant change
+7. **`/review-phase [n]`** - Check completion status
+8. **`/phase-complete [n]`** - Merge to main and tag
+9. **`/git-status`** - Verify clean state before next phase
+
+### Module Development Workflow
+1. **`/add-module [name]`** - Scaffold new module structure
+2. **`/db-status`** - Verify database after migrations
+3. **`/quick-test all`** - Ensure module integration works
+
+### Daily Development Checkpoints
+- **Morning**: `/git-status` → `/quick-test` → Continue phase work
+- **Before commits**: `/quick-test unit` → `/phase-commit`
+- **After features**: `/quick-test all` → `/review-phase`
+- **End of day**: `/git-status` → Document progress
+
 ## Available Commands
 
 ### `/start-phase [phase-number]`
@@ -342,26 +366,61 @@ These commands work seamlessly with the specialized agents:
 ✅ Conventional Commits: yes
 ```
 
-## Complete Workflow Example
+## Complete Phase Development Example
+
+Following the recommended workflow order:
 
 ```bash
-# Start new phase
-/start-phase 1          # Initialize phase work
-/phase-branch 1         # Create git branch
+# 1. Start new phase - creates todo list
+/start-phase 1          
 
-# During development
+# 2. Create feature branch
+/phase-branch 1         
+
+# 3. Baseline test
+/quick-test            
+
+# 4-5. Development with commits
+# ... implement features ...
 /phase-commit feat auth "implement login endpoint"
-/quick-test unit        # Test changes
+/quick-test unit        
 /phase-commit test auth "add login tests"
 
-# Review progress
-/review-phase 1         # Check completion
-/git-status            # Check git state
+# 6. Full test after features
+/quick-test all        
 
-# Complete phase
-/phase-complete 1       # Merge and tag
-/start-phase 2         # Begin next phase
+# 7. Review completion
+/review-phase 1         
+
+# 8. Complete and merge
+/phase-complete 1       
+
+# 9. Verify clean state
+/git-status            
+
+# Ready for next phase
+/start-phase 2         
 ```
+
+## Quick Reference Card
+
+### Essential Commands by Frequency
+1. **Most Used (multiple times daily)**
+   - `/quick-test` - Before and after changes
+   - `/phase-commit` - For each logical change
+   
+2. **Phase Transitions (per phase)**
+   - `/start-phase` - Begin phase
+   - `/phase-branch` - Create branch
+   - `/review-phase` - Check progress
+   - `/phase-complete` - Finish phase
+   
+3. **Status Checks (as needed)**
+   - `/git-status` - Repository overview
+   - `/db-status` - Database health
+   
+4. **Module Work (when adding features)**
+   - `/add-module` - New module scaffold
 
 ## See Also
 
